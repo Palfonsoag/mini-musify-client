@@ -48,6 +48,7 @@ export class AppComponent implements OnInit {
               } else {
                 localStorage.setItem("token", token);
                 this.user = new User("", "", "", "", "", "ROLE_USER", "");
+                this.errorMessage = null;
               }
             },
             error => {
@@ -91,6 +92,7 @@ export class AppComponent implements OnInit {
             this.user_register.email +
             " se ha realizado correctamente";
           this.user_register = new User("", "", "", "", "", "ROLE_USER", "");
+          this.errorMessageRegister = null;
         }
       },
       error => {
