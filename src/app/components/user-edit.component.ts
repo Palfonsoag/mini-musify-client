@@ -26,7 +26,7 @@ export class UserEditComponent implements OnInit {
     //component variables
     this.titulo = "Actualizar mis datos";
     this.user = this.identity;
-    this.alertUpdate.url = GLOBAL.url;
+    this.url = GLOBAL.url;
   }
 
   ngOnInit() {
@@ -45,7 +45,19 @@ export class UserEditComponent implements OnInit {
           if (!this.filesToUpload) {
             //Redireccion
           } else {
-            this.makeFileRequest();
+            this.makeFileRequest(
+              this.url + "upload-image-user/" + this.user._id,
+              [],
+              this.filesToUpload
+            ).then((result: any) => {
+              this.user.image = result.image;
+              let image_path = this.url + "get-image-user/" + this.user.image;
+              document
+                .getElementById("image-logged")
+                .setAttribute("src", image_path);
+              localStorage.setItem("idenity", JSON.stringify(this.user));
+              console.log(this.user);
+            });
           }
 
           this.alertUpdate = "usuario actualizado";
@@ -70,9 +82,12 @@ export class UserEditComponent implements OnInit {
     return new Promise(function(resolve, reject) {
       let formData: any = new FormData();
       let xhr = new XMLHttpRequest();
-      files.forEach(file => {
+      for (var i = 0; i < files.length; i++) {
+        formData.append("image", files[i], files[i].name);
+      }
+      /*files.forEach(file => {
         formData.append("image", file, file.name);
-      });
+      });*/
       xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
           if (xhr.status == 200) {
