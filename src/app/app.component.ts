@@ -19,12 +19,11 @@ export class AppComponent implements OnInit {
   constructor(private _userService: UserService) {
     this.user = new User("", "", "", "", "", "ROLE_USER", "");
     this.user_register = new User("", "", "", "", "", "ROLE_USER", "");
-  }
-
-  ngOnInit() {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
   }
+
+  ngOnInit() {}
 
   public onSubmit() {
     this._userService.signUp(this.user).subscribe(
