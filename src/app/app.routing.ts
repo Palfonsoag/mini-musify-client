@@ -12,7 +12,7 @@ import { ArtistEditComponent } from "./components/artist-edit.component";
 const appRoutes: Routes = [
   { path: "", component: HomeComponent },
   { path: "editar-artista/:id", component: ArtistEditComponent },
-  { path: "artist/:page?", component: ArtistListComponent },
+  { path: "artist/:page", component: ArtistListComponent },
   { path: "crear-artista", component: ArtistAddComponent },
   { path: "mis-datos", component: UserEditComponent },
   { path: "**", component: HomeComponent }
