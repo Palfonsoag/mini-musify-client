@@ -20,7 +20,7 @@
     </a>
   </nav>
   <nav id="user_logged">
-    <div class="user-image" *ngIf="identity != 'null'">
+    <div class="user-image" *ngIf="identity.image && identity.image != 'null'">
       <img
         id="image-logged"
         src="{{ url + 'get-image-user/' + identity.image }}"
