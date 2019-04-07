@@ -22,6 +22,7 @@ export class UserEditComponent implements OnInit {
     //localStorage
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
+    console.log(this.identity);
 
     //component variables
     this.titulo = "Actualizar mis datos";
